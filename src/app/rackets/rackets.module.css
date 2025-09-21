@@ -1,0 +1,110 @@
+/* Стили для страницы каталога ракеток */
+
+.content {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: var(--spacing-2xl);
+  margin-top: var(--spacing-lg);
+}
+
+.sidebar {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  height: fit-content;
+  box-shadow: var(--shadow-md);
+}
+
+.sidebarTitle {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-gray-800);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.categoryItem {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  color: var(--color-gray-700);
+  border: 1px solid transparent;
+}
+
+.categoryItem:hover {
+  background-color: var(--color-gray-50);
+  color: var(--color-primary);
+  border-color: var(--color-gray-200);
+}
+
+.categoryItem.active {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.categoryItem.active:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.mainContent {
+  flex: 1;
+}
+
+.pageTitle {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: 200px 1fr;
+    gap: var(--spacing-xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .sidebar {
+    order: 2;
+    padding: var(--spacing-md);
+  }
+
+  .categoryList {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+  }
+
+  .categoryItem {
+    flex: 1;
+    text-align: center;
+    min-width: 80px;
+  }
+
+  .mainContent {
+    order: 1;
+  }
+
+  .pageTitle {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-lg);
+  }
+}
