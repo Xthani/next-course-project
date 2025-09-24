@@ -1,0 +1,10 @@
+.main {
+  min-height: calc(100vh - 140px);
+  padding: var(--spacing-xl) 0;
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: var(--spacing-md) 0;
+  }
+}

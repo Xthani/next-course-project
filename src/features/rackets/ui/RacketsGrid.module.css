@@ -1,0 +1,49 @@
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
+}
+
+/* Кастомные классы для переопределения */
+.productsGrid.grid-cols-1 {
+  grid-template-columns: 1fr;
+}
+
+.productsGrid.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.productsGrid.gap-lg {
+  gap: var(--spacing-lg);
+}
+
+.productsGrid.max-w-4xl {
+  max-width: 56rem;
+}
+
+.productsGrid.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .productsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .productsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .productsGrid {
+    grid-template-columns: 1fr;
+  }
+}
