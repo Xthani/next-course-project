@@ -1,0 +1,1 @@
+export { RacketDetailPage } from "./RacketDetailPage";

@@ -5,6 +5,19 @@
   margin-top: var(--spacing-lg);
 }
 
+.productsGrid.horizontal {
+  display: flex;
+  overflow-x: auto;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-sm) 0;
+  scroll-behavior: smooth;
+}
+
+.productsGrid.horizontal > * {
+  flex: 0 0 280px;
+  min-width: 280px;
+}
+
 /* Кастомные классы для переопределения */
 .productsGrid.grid-cols-1 {
   grid-template-columns: 1fr;

@@ -1,20 +1,45 @@
-import { rackets } from "@/features/rackets/api/mock";
-import { Racket } from "@/shared/types";
+import {
+  Racket,
+  ApiResponse,
+  GetRacketsParams,
+  GetRacketByIdParams,
+} from "@/shared/types";
+import { API_CONFIG } from "../../../shared/config";
+import { apiWrapper, apiWrapperWith404 } from "@/shared/utils/apiWrapper";
 
-export const racketsApi = {
-  getAll: (): Racket[] => {
-    return rackets;
-  },
+export const getRackets = async ({
+  page = 1,
+  limit = 2,
+}: GetRacketsParams): Promise<ApiResponse<Racket[]>> => {
+  return apiWrapper<Racket[]>(() =>
+    fetch(`${API_CONFIG.BASE_URL}/products?page=${page}&limit=${limit}`)
+  );
+};
 
-  getById: (id: string): Racket | undefined => {
-    return rackets.find((racket) => String(racket.id) === id);
-  },
+export const getTop10Rackets = async (): Promise<ApiResponse<Racket[]>> => {
+  return apiWrapper<Racket[]>(() => fetch(`${API_CONFIG.BASE_URL}/top-10`));
+};
 
-  getByBrand: (brandName: string): Racket[] => {
-    return rackets.filter((racket) => racket.brand.name === brandName);
-  },
+export const getRacketById = async ({
+  id,
+}: GetRacketByIdParams): Promise<ApiResponse<Racket>> => {
+  return apiWrapperWith404<Racket>(
+    () => fetch(`${API_CONFIG.BASE_URL}/product/${id}`),
+    async (response) => {
+      const data: { product: Racket } = await response.json();
+      return data.product;
+    }
+  );
+};
 
-  getTop10: (): Racket[] => {
-    return rackets.filter((racket) => racket.top10);
-  },
+export const getRacketByIdSlow = async ({
+  id,
+}: GetRacketByIdParams): Promise<ApiResponse<Racket>> => {
+  return apiWrapperWith404<Racket>(
+    () => fetch(`${API_CONFIG.BASE_URL}/product-slow/${id}`),
+    async (response) => {
+      const data: { product: Racket } = await response.json();
+      return data.product;
+    }
+  );
 };

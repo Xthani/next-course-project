@@ -16,3 +16,18 @@ export interface Racket {
   brandId: number;
   brand: Brand;
 }
+
+// API типы
+export type ApiResponse<Entity> = {
+  isError: boolean;
+  data?: Entity;
+};
+
+export type GetRacketsParams = {
+  page?: number;
+  limit?: number;
+};
+
+export type GetRacketByIdParams = {
+  id: string;
+};
