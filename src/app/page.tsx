@@ -20,7 +20,7 @@ const Page = () => {
 
         <div className="mb-lg">
           <h2 className="text-2xl font-bold text-center mb-lg">Топ 10</h2>
-          <RacketsGrid isTop10={true} className="horizontal" />
+          <RacketsGrid isTop10 className="horizontal" />
         </div>
 
         <Link

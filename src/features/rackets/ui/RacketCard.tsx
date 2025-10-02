@@ -6,13 +6,16 @@ import styles from "./RacketCard.module.css";
 
 interface RacketCardProps {
   racket: Racket;
+  from?: string;
 }
 
-export const RacketCard = ({ racket }: RacketCardProps) => {
+export const RacketCard = ({ racket, from }: RacketCardProps) => {
+  const href = from ? `/rackets/${racket.id}?from=${from}` : `/rackets/${racket.id}`;
+  
   return (
     <Link
       key={racket.id}
-      href={`/rackets/${racket.id}`}
+      href={href}
       className={styles.productCard}
     >
       <div className={styles.productImageContainer}>

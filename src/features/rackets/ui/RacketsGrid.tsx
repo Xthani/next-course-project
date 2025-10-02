@@ -29,7 +29,11 @@ export const RacketsGrid = async ({ isTop10 = false, className }: RacketsGridPro
   return (
     <div className={`${styles.productsGrid} ${customClasses}`}>
       {rackets.map((racket) => (
-        <RacketCard key={racket.id} racket={racket} />
+        <RacketCard 
+          key={racket.id} 
+          racket={racket} 
+          from={isTop10 ? 'top10' : undefined}
+        />
       ))}
     </div>
   );
