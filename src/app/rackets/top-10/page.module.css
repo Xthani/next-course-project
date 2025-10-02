@@ -1,0 +1,15 @@
+.pageTitle {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .pageTitle {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-lg);
+  }
+}

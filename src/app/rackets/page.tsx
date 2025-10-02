@@ -1,7 +1,13 @@
-import { RacketsPageLayout } from "@/shared/ui";
+import { RacketsGrid } from "@/features/rackets/ui";
+import styles from "./page.module.css";
 
 const Page = () => {
-  return <RacketsPageLayout title="Все ракетки" />;
+  return (
+    <>
+      <h1 className={styles.pageTitle}>Все ракетки</h1>
+      <RacketsGrid />
+    </>
+  );
 };
 
 export default Page;

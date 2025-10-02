@@ -1,20 +1,3 @@
-/* Стили для страницы каталога ракеток */
-
-.content {
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  gap: var(--spacing-2xl);
-  margin-top: var(--spacing-lg);
-}
-
-.sidebar {
-  background-color: var(--color-white);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
-  height: fit-content;
-  box-shadow: var(--shadow-md);
-}
-
 .sidebarTitle {
   font-size: var(--font-size-lg);
   font-weight: 600;
@@ -56,37 +39,8 @@
   background-color: var(--color-primary-dark);
 }
 
-.mainContent {
-  flex: 1;
-}
-
-.pageTitle {
-  font-size: var(--font-size-3xl);
-  font-weight: 700;
-  color: var(--color-gray-900);
-  margin-bottom: var(--spacing-xl);
-  text-align: center;
-}
-
-/* Адаптивность */
-@media (max-width: 1024px) {
-  .content {
-    grid-template-columns: 200px 1fr;
-    gap: var(--spacing-xl);
-  }
-}
-
+/* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
-  .content {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
-  }
-
-  .sidebar {
-    order: 2;
-    padding: var(--spacing-md);
-  }
-
   .categoryList {
     flex-direction: row;
     flex-wrap: wrap;
@@ -97,14 +51,5 @@
     flex: 1;
     text-align: center;
     min-width: 80px;
-  }
-
-  .mainContent {
-    order: 1;
-  }
-
-  .pageTitle {
-    font-size: var(--font-size-2xl);
-    margin-bottom: var(--spacing-lg);
   }
 }
