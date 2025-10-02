@@ -4,8 +4,8 @@ import styles from "./page.module.css";
 const Page = () => {
   return (
     <>
-      <h1 className={styles.pageTitle}>Все ракетки</h1>
-      <RacketsGrid />
+      <h1 className={styles.pageTitle}>Топ 10 ракеток</h1>
+      <RacketsGrid isTop10 />
     </>
   );
 };

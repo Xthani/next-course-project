@@ -1,14 +1,16 @@
 import { RacketCard } from "./RacketCard";
-import { useRackets } from "../model/useRackets";
 import styles from "./RacketsGrid.module.css";
+import { getRackets, getTop10Rackets } from "@/features/rackets/api/racketsApi";
 
 interface RacketsGridProps {
-  limit?: number;
+  isTop10?: boolean;
   className?: string;
 }
 
-export const RacketsGrid = ({ limit, className }: RacketsGridProps) => {
-  const { rackets, isLoading, error } = useRackets();
+export const RacketsGrid = async ({ isTop10 = false, className }: RacketsGridProps) => {
+  const { isError, data: rackets } = isTop10 
+    ? await getTop10Rackets()
+    : await getRackets({ page: 1, limit: 10 });
 
   const customClasses =
     className
@@ -16,28 +18,22 @@ export const RacketsGrid = ({ limit, className }: RacketsGridProps) => {
       .map((cls) => styles[cls] || cls)
       .join(" ") || "";
 
-  if (isLoading) {
+  if (isError || !rackets) {
     return (
       <div className={`${styles.productsGrid} ${customClasses}`}>
-        <div>Загрузка...</div>
+        <div>Ошибка загрузки данных</div>
       </div>
     );
   }
-
-  if (error) {
-    return (
-      <div className={`${styles.productsGrid} ${customClasses}`}>
-        <div>Ошибка загрузки данных: {error}</div>
-      </div>
-    );
-  }
-
-  const displayRackets = limit ? rackets.slice(0, limit) : rackets;
 
   return (
     <div className={`${styles.productsGrid} ${customClasses}`}>
-      {displayRackets.map((racket) => (
-        <RacketCard key={racket.id} racket={racket} />
+      {rackets.map((racket) => (
+        <RacketCard 
+          key={racket.id} 
+          racket={racket} 
+          from={isTop10 ? 'top10' : undefined}
+        />
       ))}
     </div>
   );

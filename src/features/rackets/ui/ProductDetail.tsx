@@ -1,27 +1,19 @@
 import Image from "next/image";
 import { Badge } from "@/shared/ui";
-import { useRacket } from "../model/useRacket";
 import styles from "./ProductDetail.module.css";
+import { getRacketById } from "@/features/rackets/api/racketsApi";
 
 interface ProductDetailProps {
   racketId: string;
 }
 
-export const ProductDetail = ({ racketId }: ProductDetailProps) => {
-  const { racket, isLoading, error } = useRacket({ racketId });
+export const ProductDetail = async ({ racketId }: ProductDetailProps) => {
+  const { isError, data: racket } = await getRacketById({ id: racketId });
 
-  if (isLoading) {
+  if (isError || !racket) {
     return (
       <div className={styles.productContainer}>
-        <div>Загрузка товара...</div>
-      </div>
-    );
-  }
-
-  if (error || !racket) {
-    return (
-      <div className={styles.productContainer}>
-        <div>Товар не найден: {error}</div>
+        <div>Товар не найден</div>
       </div>
     );
   }

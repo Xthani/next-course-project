@@ -14,10 +14,13 @@ const Page = () => {
         </p>
 
         <div className="mb-lg">
-          <h2 className="text-2xl font-bold text-center mb-lg">
-            Популярные ракетки
-          </h2>
-          <RacketsGrid limit={3} />
+          <h2 className="text-2xl font-bold text-center mb-lg">Наши ракетки</h2>
+          <RacketsGrid className="horizontal" />
+        </div>
+
+        <div className="mb-lg">
+          <h2 className="text-2xl font-bold text-center mb-lg">Топ 10</h2>
+          <RacketsGrid isTop10 className="horizontal" />
         </div>
 
         <Link

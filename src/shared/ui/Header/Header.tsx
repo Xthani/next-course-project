@@ -11,6 +11,7 @@ interface HeaderProps {
 const defaultLinks = [
   { label: "Главная", href: "/" },
   { label: "Ракетки", href: "/rackets" },
+  { label: "Топ 10", href: "/rackets/top-10" },
 ];
 
 export const Header = ({ links = defaultLinks }: HeaderProps) => {
