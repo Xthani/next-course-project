@@ -5,12 +5,12 @@ import { usePathname } from "next/navigation";
 import styles from "./Header.module.css";
 
 interface HeaderProps {
-  links?: Array<{ label: string; href: string }>;
+  links?: Array<{ label: string; href: string; prefetch?: boolean }>;
 }
 
 const defaultLinks = [
   { label: "Главная", href: "/" },
-  { label: "Ракетки", href: "/rackets" },
+  { label: "Ракетки", href: "/rackets", prefetch: true },
   { label: "Топ 10", href: "/rackets/top-10" },
 ];
 
@@ -24,11 +24,12 @@ export const Header = ({ links = defaultLinks }: HeaderProps) => {
           TENNIS STORE
         </Link>
         <nav className={styles.nav}>
-          {links.map(({ label, href }) => (
+          {links.map(({ label, href, prefetch }) => (
             <Link
               key={href}
               href={href}
               className={`${styles.navLink} ${pathname === href ? styles.active : ""}`}
+              prefetch={prefetch}
             >
               {label}
             </Link>
