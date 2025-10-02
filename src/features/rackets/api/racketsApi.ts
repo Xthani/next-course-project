@@ -17,7 +17,14 @@ export const getRackets = async ({
 };
 
 export const getTop10Rackets = async (): Promise<ApiResponse<Racket[]>> => {
-  return apiWrapper<Racket[]>(() => fetch(`${API_CONFIG.BASE_URL}/top-10`));
+  return apiWrapper<Racket[]>(() =>
+    fetch(`${API_CONFIG.BASE_URL}/top-10`, {
+      next: {
+        tags: ["getTop10Rackets"],
+        revalidate: 300,
+      },
+    })
+  );
 };
 
 export const getRacketById = async ({
@@ -25,6 +32,18 @@ export const getRacketById = async ({
 }: GetRacketByIdParams): Promise<ApiResponse<Racket>> => {
   return apiWrapperWith404<Racket>(
     () => fetch(`${API_CONFIG.BASE_URL}/product/${id}`),
+    async (response) => {
+      const data: { product: Racket } = await response.json();
+      return data.product;
+    }
+  );
+};
+
+export const getMetadataRacketById = async ({
+  id,
+}: GetRacketByIdParams): Promise<ApiResponse<Racket>> => {
+  return apiWrapperWith404<Racket>(
+    () => fetch(`${API_CONFIG.BASE_URL}/meta/product/${id}`),
     async (response) => {
       const data: { product: Racket } = await response.json();
       return data.product;
